@@ -12,6 +12,7 @@
 		3357502C1F3A047C005C1006 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3357502A1F3A047C005C1006 /* Main.storyboard */; };
 		3357502E1F3A047C005C1006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3357502D1F3A047C005C1006 /* Assets.xcassets */; };
 		335750311F3A047C005C1006 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3357502F1F3A047C005C1006 /* LaunchScreen.storyboard */; };
+		33B3B6941F3B40050075E834 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3B6931F3B40050075E834 /* ChecklistItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3357502D1F3A047C005C1006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		335750301F3A047C005C1006 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		335750321F3A047C005C1006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33B3B6931F3B40050075E834 /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				335750261F3A047C005C1006 /* AppDelegate.swift */,
 				335750281F3A047C005C1006 /* ChecklistViewController.swift */,
+				33B3B6931F3B40050075E834 /* ChecklistItem.swift */,
 				3357502A1F3A047C005C1006 /* Main.storyboard */,
 				3357502D1F3A047C005C1006 /* Assets.xcassets */,
 				3357502F1F3A047C005C1006 /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				335750291F3A047C005C1006 /* ChecklistViewController.swift in Sources */,
+				33B3B6941F3B40050075E834 /* ChecklistItem.swift in Sources */,
 				335750271F3A047C005C1006 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +303,7 @@
 				335750371F3A047C005C1006 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
