@@ -70,12 +70,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Gp-no-bdj">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Gp-no-bdj">
                                                     <rect key="frame" x="8" y="5" width="304" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="cvQ-ac-h3I" eventType="editingDidEndOnExit" id="Ql0-Q4-thb"/>
+                                                        <outlet property="delegate" destination="cvQ-ac-h3I" id="chW-lu-1Jh"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -94,16 +98,20 @@
                                 <action selector="cancel" destination="cvQ-ac-h3I" id="8Vl-ib-oao"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bP5-4x-jck">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="bP5-4x-jck">
                             <connections>
                                 <action selector="done" destination="cvQ-ac-h3I" id="Ppj-7x-9Bj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneBarButton" destination="bP5-4x-jck" id="eNQ-y1-skb"/>
+                        <outlet property="textField" destination="3Gp-no-bdj" id="DhT-CP-dHn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ltg-WR-ZAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2193.75" y="-36.971830985915496"/>
+            <point key="canvasLocation" x="2258" y="56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NaH-aw-Ky3">
