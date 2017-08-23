@@ -7,27 +7,14 @@
 //
 
 import UIKit
-
-class ChecklistViewController: UITableViewController {
-    
-    //This declare that items will hold an array of ChecklistItem objects
-    //but it does not actually create that array.
-    //At this point, items does not have a value yet.
+class ChecklistViewController: UITableViewController,ItemDetailViewControllerDelegate {
     var items: [ChecklistItem]
-    
-    //This instantiates the array. Now items contains a valid array object,
-    //but the array has no ChecklistItem objects inside it yet.
     required init?(coder aDecoder: NSCoder) {
         items = [ChecklistItem]()
-        
-        //This instantiates a new ChecklistItem objec. Notice the ().
+
         let row0item = ChecklistItem()
-        
-        //Give values to the data items inside the new ChecklistItem object.
         row0item.text = "Walk the dog"
         row0item.checked = false
-        
-        //This adds the CheclistItem object into the items array.
         items.append(row0item)
         
         let row1item = ChecklistItem()
@@ -52,9 +39,41 @@ class ChecklistViewController: UITableViewController {
         
         super.init(coder: aDecoder)
     }
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
+        
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                
+                configureCellText(for: cell, with: item)
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,29 +118,34 @@ class ChecklistViewController: UITableViewController {
     }
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
+        let label = cell.viewWithTag(1001) as! UILabel
         
         if item.checked {
-            cell.accessoryType = .checkmark
+            label.text = "✓";
         }else {
-            cell.accessoryType = .none
+            label.text = ""
         }
         
         
     }
     
-    @IBAction func addItem () {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let newRowIndex = items.count
+        if segue.identifier == "AddItem" {
+            let navigation = segue.destination as! UINavigationController
+            let controller = navigation.topViewController as! ItemDetailViewController
+            controller.delegate = self   
+        } else  if segue.identifier == "EditItem" {
+            
+            let navigation = segue.destination as! UINavigationController
+            let controller = navigation.topViewController as! ItemDetailViewController
+            controller.delegate = self
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
+        }
         
-        let item = ChecklistItem()
-        item.text = "this is new item"
-        item.checked = false
-        items.append(item)
-        
-        let newIndexPath = IndexPath(row: newRowIndex, section: 0)
-        let newIndexPaths = [newIndexPath]
-        
-        tableView.insertRows(at: newIndexPaths, with: .automatic)
     }
 }
 
